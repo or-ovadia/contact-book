@@ -61,7 +61,7 @@ def delete_contact(first_name, last_name):
         new_book.append(c)
     with open("contact_book.json", "w") as file:
         json.dump(new_book, file, indent= 4)
-    print("Contact deleted") if flag else print("Contact not found")
+    print("== Contact deleted ==") if flag else print("== Contact not found ==")
 
 def edit_contact():
     flag = False
@@ -78,7 +78,7 @@ def edit_contact():
                 c["email"] = input("Enter new email")
             flag = True
     if flag:
-        print("Contact updated")
+        print("== Contact updated ==")
         with open("contact_book.json", 'w') as file:
             json.dump(book, file, indent= 4)
     else:
@@ -99,7 +99,7 @@ def backup():
     backup_name = f"backups/contact({datetime.now().strftime('%d.%m.%Y')}).json"
     with open(backup_name, 'w') as new_file:
         json.dump(book, new_file, indent= 4)
-    print("Backup created successfully")
+    print("= Backup created successfully =")
 
 def main():
     create_new_book()
