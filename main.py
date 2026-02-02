@@ -1,4 +1,4 @@
-from functions import show_all, add_contact, search_by_name, delete_contact, create_new_book, update_contact
+from functions import show_all, add_contact, search_by_name, delete_contact, create_new_book, edit_contact
 
 create_new_book()
 
@@ -7,7 +7,7 @@ interface = ("====== Hello ======\n"
              "2. Add new contact\n"
              "3. Search contact\n"
              "4. Delete contact\n"
-             "5. Update contact\n"
+             "5. Edit contact\n"
              "0. Quit\n")
 
 while True:
@@ -20,8 +20,7 @@ while True:
     elif choice == "2":
         name = input("Enter first name")
         family = input("Enter last name")
-        number = input("Enter phone number")
-        add_contact(name, family, number)
+        add_contact(name, family)
     elif choice == "3":
         first_name = input("Enter first name")
         print(search_by_name(first_name))
@@ -30,6 +29,6 @@ while True:
         last_name = input("Enter last name")
         delete_contact(first_name, last_name)
     elif choice == "5":
-        update_contact()
+        edit_contact()
     else:
         print("Invalid choice, please try again")

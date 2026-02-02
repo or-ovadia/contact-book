@@ -9,11 +9,24 @@ def create_new_book():
             book = []
             json.dump(book, file, indent=4)
 
-def add_contact(name, family, number):
+def is_saved(first, last):
+    with open("contact_book.json", "r") as file:
+        book = json.load(file)
+    for c in book:
+        if c["first name"] == first and c["last name"] == last:
+            return True
+    return False
+
+def add_contact(name, family):
+    if is_saved(name , family):
+        print("There is contact with the same name, press 'edit contact'")
+        return
+
     with open("contact_book.json", "r") as file:
         book = json.load(file)
 
-    book.append({"first name":name, "last name": family, "phone number": number, "email": input("Enter email")})
+    book.append({"first name":name, "last name": family, "phone number": input("Enter phone number"), "email": input("Enter email")})
+    sort_book(book)
     with open("contact_book.json", "w") as file:
         json.dump(book, file, indent= 4)
 
@@ -49,7 +62,7 @@ def delete_contact(first_name, last_name):
         json.dump(new_book, file, indent= 4)
     print("Contact deleted") if flag else print("Contact not found")
 
-def update_contact():
+def edit_contact():
     flag = False
     with open("contact_book.json", "r") as file:
         book = json.load(file)
@@ -69,6 +82,14 @@ def update_contact():
             json.dump(book, file, indent= 4)
     else:
         print("Contact not found, choose 'add contact'")
+
+def sort_book(book):
+    for i in range(len(book)):
+        mini = i
+        for j in range(i + 1, len(book)):
+            if book[j]["first name"] < book[mini]["first name"]:
+                mini = j
+        book[i], book[mini] = book[mini], book[i]
 
 
 def main():
