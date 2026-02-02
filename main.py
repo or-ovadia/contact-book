@@ -1,4 +1,4 @@
-from functions import show_all, add_contact, search_by_name, delete_contact, create_new_book, edit_contact
+from functions import show_all, add_contact, search_by_name, delete_contact, create_new_book, edit_contact, backup
 
 create_new_book()
 
@@ -8,6 +8,7 @@ interface = ("====== Hello ======\n"
              "3. Search contact\n"
              "4. Delete contact\n"
              "5. Edit contact\n"
+             "6. Create backup file\n"
              "0. Quit\n")
 
 while True:
@@ -30,5 +31,7 @@ while True:
         delete_contact(first_name, last_name)
     elif choice == "5":
         edit_contact()
+    elif choice == "6":
+        backup()
     else:
         print("Invalid choice, please try again")

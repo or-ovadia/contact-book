@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 def create_new_book():
     try:
@@ -91,10 +92,18 @@ def sort_book(book):
                 mini = j
         book[i], book[mini] = book[mini], book[i]
 
+def backup():
+    with open("contact_book.json", 'r') as file:
+        book = json.load(file)
+
+    backup_name = f"backups/contact({datetime.now().strftime('%d.%m.%Y')}).json"
+    with open(backup_name, 'w') as new_file:
+        json.dump(book, new_file, indent= 4)
+    print("Backup created successfully")
 
 def main():
     create_new_book()
-    add_contact("moshe", "israeli", "0555332332")
+    add_contact("moshe", "israeli")
     delete_contact("moshe", "israeli")
     show_all()
 
